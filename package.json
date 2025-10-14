@@ -1,0 +1,59 @@
+{
+  "name": "@hexbit/v3",
+  "version": "0.1.0",
+  "description": "A TypeScript-based Vue 3 library that simplifies D3.js visualizations using Composition API patterns.",
+  "type": "module",
+  "main": "./dist/v3.umd.cjs",
+  "module": "./dist/v3.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/v3.js",
+      "require": "./dist/v3.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vue",
+    "vue3",
+    "d3",
+    "d3js",
+    "charts",
+    "visualization",
+    "data-visualization",
+    "typescript",
+    "composition-api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hexbit-Studios/v3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hexbit-Studios/v3/issues"
+  },
+  "homepage": "https://github.com/Hexbit-Studios/v3#readme",
+  "author": "Hexbit Studios <jack@hexbitstudios.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "d3": "^7.9.0",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/node": "^24.6.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.7",
+    "vite-plugin-dts": "^4.5.4",
+    "vue-tsc": "^3.1.0"
+  }
+}
