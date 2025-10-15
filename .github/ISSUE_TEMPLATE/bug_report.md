@@ -41,7 +41,7 @@ import { BarChart } from '@hexbit/v3'
 
 If applicable, add screenshots to help explain your problem.
 
-## Environment:
+## Environment
 
 - OS: [e.g. macOS, Windows, Linux]
 - Browser: [e.g. Chrome 120, Firefox 121]
