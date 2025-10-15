@@ -47,15 +47,19 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
+    "lint-staged": "lint-staged",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "d3": "^7.9.0",
     "vue": "^3.5.22"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@rushstack/eslint-patch": "^1.14.0",
     "@types/d3": "^7.4.3",
     "@types/node": "^24.6.0",
@@ -81,5 +85,14 @@
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4",
     "vue-tsc": "^3.1.0"
+  },
+  "lint-staged": {
+    "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
