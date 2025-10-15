@@ -27,7 +27,7 @@ const { dimensions, margin } = useSvgCanvas(containerRef, props.margin, props.re
 // Create scales
 const xScale = computed(() => {
   if (!props.data.length) return null
-  
+
   return d3
     .scaleBand()
     .domain(props.data.map((d) => String(d[props.xKey])))
@@ -40,11 +40,7 @@ const yScale = computed(() => {
 
   const maxValue = d3.max(props.data, (d) => Number(d[props.yKey])) || 0
 
-  return d3
-    .scaleLinear()
-    .domain([0, maxValue])
-    .range([dimensions.value.innerHeight, 0])
-    .nice()
+  return d3.scaleLinear().domain([0, maxValue]).range([dimensions.value.innerHeight, 0]).nice()
 })
 
 // Render chart
@@ -72,13 +68,11 @@ const renderChart = () => {
 
   // Draw X axis
   const xAxis = d3.axisBottom(xScale.value)
-  g.select('.x-axis')
-    .attr('transform', `translate(0,${dimensions.value.innerHeight})`)
-    .call(xAxis as any)
+  g.select('.x-axis').attr('transform', `translate(0,${dimensions.value.innerHeight})`).call(xAxis)
 
   // Draw Y axis
   const yAxis = d3.axisLeft(yScale.value)
-  g.select('.y-axis').call(yAxis as any)
+  g.select('.y-axis').call(yAxis)
 }
 
 // Watch for changes and re-render

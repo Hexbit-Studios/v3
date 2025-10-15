@@ -15,15 +15,10 @@ const sampleData = ref([
 <template>
   <div class="app">
     <h1>@hexbit/v3 - Development Playground</h1>
-    
+
     <div class="chart-container">
       <h2>Bar Chart Example</h2>
-      <BarChart 
-        :data="sampleData" 
-        x-key="name" 
-        y-key="value"
-        color="#10b981"
-      />
+      <BarChart :data="sampleData" x-key="name" y-key="value" color="#10b981" />
     </div>
   </div>
 </template>
@@ -36,7 +31,10 @@ const sampleData = ref([
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   padding: 2rem;
   background: #f9fafb;
 }
