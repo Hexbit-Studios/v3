@@ -13,7 +13,7 @@ const DEFAULT_MARGIN: ChartMargin = {
 
 /**
  * Composable for managing SVG canvas dimensions and container
- * 
+ *
  * @param containerRef - Reference to the container element
  * @param margin - Optional margin configuration
  * @param responsive - Whether to resize on window resize
