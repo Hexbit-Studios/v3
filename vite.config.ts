@@ -10,8 +10,8 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       include: ['src/**/*.ts', 'src/**/*.vue'],
-      exclude: ['src/**/*.spec.ts', 'src/**/*.test.ts']
-    })
+      exclude: ['src/**/*.spec.ts', 'src/**/*.test.ts'],
+    }),
   ],
   build: {
     lib: {
@@ -22,7 +22,7 @@ export default defineConfig({
         if (format === 'es') return 'v3.js'
         if (format === 'umd') return 'v3.umd.cjs'
         return `v3.${format}.js`
-      }
+      },
     },
     rollupOptions: {
       // Externalize deps that shouldn't be bundled
@@ -31,14 +31,14 @@ export default defineConfig({
         // Provide global variables to use in the UMD build
         globals: {
           vue: 'Vue',
-          d3: 'd3'
-        }
-      }
-    }
+          d3: 'd3',
+        },
+      },
+    },
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
-    }
-  }
+      '@': resolve(__dirname, 'src'),
+    },
+  },
 })
