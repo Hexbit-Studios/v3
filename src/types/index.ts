@@ -32,7 +32,7 @@ export interface AxisConfig {
   show?: boolean
   label?: string
   tickCount?: number
-  tickFormat?: (value: any) => string
+  tickFormat?: (value: unknown) => string
   gridLines?: boolean
 }
 
