@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/Hexbit-Studios/v3/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📚 Documentation
+    url: https://github.com/Hexbit-Studios/v3#readme
+    about: Read the documentation to learn more about using @hexbit/v3
