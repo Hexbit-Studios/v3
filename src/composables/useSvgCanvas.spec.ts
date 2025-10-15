@@ -22,12 +22,14 @@ describe('useSvgCanvas', () => {
       },
     })
 
-    mount(TestComponent)
-    return result
+    const wrapper = mount(TestComponent)
+    return { result, wrapper }
   }
 
   it('should initialize with zero dimensions when container is null', () => {
-    const { width, height, dimensions } = mountComposable()
+    const {
+      result: { width, height, dimensions },
+    } = mountComposable()
 
     expect(width.value).toBe(0)
     expect(height.value).toBe(0)
@@ -36,7 +38,9 @@ describe('useSvgCanvas', () => {
   })
 
   it('should use default margins', () => {
-    const { margin } = mountComposable()
+    const {
+      result: { margin },
+    } = mountComposable()
 
     expect(margin.value).toEqual({
       top: 20,
@@ -48,7 +52,9 @@ describe('useSvgCanvas', () => {
 
   it('should merge custom margins with defaults', () => {
     const customMargin = { top: 30, left: 60 }
-    const { margin } = mountComposable(customMargin)
+    const {
+      result: { margin },
+    } = mountComposable(customMargin)
 
     expect(margin.value).toEqual({
       top: 30,
@@ -73,7 +79,9 @@ describe('useSvgCanvas', () => {
     })
     containerRef.value = mockContainer
 
-    const { dimensions, updateDimensions } = mountComposable()
+    const {
+      result: { dimensions, updateDimensions },
+    } = mountComposable()
     updateDimensions()
 
     expect(dimensions.value.width).toBe(800)
@@ -96,10 +104,68 @@ describe('useSvgCanvas', () => {
     })
     containerRef.value = mockContainer
 
-    const { dimensions, updateDimensions } = mountComposable()
+    const {
+      result: { dimensions, updateDimensions },
+    } = mountComposable()
     updateDimensions()
 
     expect(dimensions.value.innerWidth).toBe(0)
     expect(dimensions.value.innerHeight).toBe(0)
+  })
+
+  it('should disconnect ResizeObserver on unmount', () => {
+    // Mock ResizeObserver
+    const mockDisconnect = vi.fn()
+    const mockObserve = vi.fn()
+    const mockResizeObserver = vi.fn(() => ({
+      observe: mockObserve,
+      disconnect: mockDisconnect,
+      unobserve: vi.fn(),
+    }))
+
+    global.ResizeObserver = mockResizeObserver
+
+    const mockContainer = document.createElement('div')
+    Object.defineProperty(mockContainer, 'getBoundingClientRect', {
+      value: vi.fn(() => ({
+        width: 800,
+        height: 600,
+        top: 0,
+        left: 0,
+        right: 800,
+        bottom: 600,
+      })),
+    })
+    containerRef.value = mockContainer
+
+    const { wrapper } = mountComposable()
+
+    // Verify ResizeObserver was created and observe was called
+    expect(mockResizeObserver).toHaveBeenCalled()
+    expect(mockObserve).toHaveBeenCalledWith(mockContainer)
+
+    // Unmount the component
+    wrapper.unmount()
+
+    // Verify disconnect was called
+    expect(mockDisconnect).toHaveBeenCalled()
+  })
+
+  it('should not create ResizeObserver when responsive is false', () => {
+    const mockResizeObserver = vi.fn(() => ({
+      observe: vi.fn(),
+      disconnect: vi.fn(),
+      unobserve: vi.fn(),
+    }))
+
+    global.ResizeObserver = mockResizeObserver
+
+    const mockContainer = document.createElement('div')
+    containerRef.value = mockContainer
+
+    mountComposable({}, false)
+
+    // Verify ResizeObserver was NOT created
+    expect(mockResizeObserver).not.toHaveBeenCalled()
   })
 })
