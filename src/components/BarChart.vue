@@ -50,8 +50,8 @@ const renderChart = () => {
   const svg = d3.select(svgRef.value)
   const g = svg.select('.chart-content')
 
-  // Clear previous content
-  g.selectAll('*').remove()
+  // Clear previous bars only (not axes)
+  g.selectAll('.bar').remove()
 
   // Draw bars
   g.selectAll('.bar')
@@ -68,11 +68,11 @@ const renderChart = () => {
 
   // Draw X axis
   const xAxis = d3.axisBottom(xScale.value)
-  g.select('.x-axis').attr('transform', `translate(0,${dimensions.value.innerHeight})`).call(xAxis)
+  g.select<SVGGElement>('.x-axis').attr('transform', `translate(0,${dimensions.value.innerHeight})`).call(xAxis)
 
   // Draw Y axis
   const yAxis = d3.axisLeft(yScale.value)
-  g.select('.y-axis').call(yAxis)
+  g.select<SVGGElement>('.y-axis').call(yAxis)
 }
 
 // Watch for changes and re-render
