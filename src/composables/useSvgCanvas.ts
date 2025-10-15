@@ -20,7 +20,7 @@ const DEFAULT_MARGIN: ChartMargin = {
  * @returns SVG canvas utilities and dimensions
  */
 export function useSvgCanvas(
-  containerRef: Ref<HTMLElement | null>,
+  containerRef: Ref<HTMLElement | null | undefined>,
   margin: Partial<ChartMargin> = {},
   responsive = true
 ) {
