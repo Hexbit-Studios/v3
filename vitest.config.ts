@@ -20,6 +20,8 @@ export default defineConfig({
         '*.config.ts',
         '*.config.js',
         '**/index.ts',
+        'docs/**',
+        '.vitepress/**',
       ],
       thresholds: {
         lines: 80,
