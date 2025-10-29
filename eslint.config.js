@@ -54,6 +54,6 @@ export default [
 
   // Ignore patterns
   {
-    ignores: ['dist/**', 'node_modules/**', 'coverage/**', '*.config.js', '*.config.ts'],
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**', '*.config.js', '*.config.ts', 'docs/**'],
   },
 ]
