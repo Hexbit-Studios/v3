@@ -42,6 +42,25 @@ const data = [
 - 🎯 Tree-shakeable
 - ⚡ Lightweight
 
+## Documentation
+
+Comprehensive documentation is available at [https://hexbit-studios.github.io/v3/](https://hexbit-studios.github.io/v3/)
+
+### Local Documentation
+
+Run the documentation site locally:
+
+```bash
+# Start development server
+npm run docs:dev
+
+# Build documentation
+npm run docs:build
+
+# Preview built docs
+npm run docs:preview
+```
+
 ## Development
 
 ```bash
